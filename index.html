@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pesca y Ganadería - Recursos Naturales Primarios</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e3f2fd 0%, #f5f5f5 100%);
+    color: #2c3e50;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  /* ---- BARRA SUPERIOR ---- */
+  .navbar {
+    background: linear-gradient(90deg, #1565c0 0%, #0d47a1 100%);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .navbar-title {
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    transition: all 0.3s;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+  }
+
+  /* ---- HERO SECTION ---- */
+  .hero {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e72 50%, #ffa502 100%);
+    color: #fff;
+    padding: 35px 20px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    opacity: 0.95;
+    max-width: 500px;
+    margin: 0 auto 14px;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 600px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-top: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  /* ---- CONTENEDOR PRINCIPAL ---- */
+  .main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* ---- TARJETAS DE SECCION ---- */
+  .section-card {
+    background: #fff;
+    border-radius: 10px;
+    margin: 24px 0;
+    padding: 24px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    border-left: 6px solid;
+  }
+
+  .section-card.ganaderia {
+    border-left-color: #26a69a;
+  }
+
+  .section-card.pesca {
+    border-left-color: #1976d2;
+  }
+
+  .section-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #1a237e;
+  }
+
+  .section-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 18px 0 10px;
+    color: #283593;
+  }
+
+  .section-card p {
+    margin-bottom: 12px;
+    color: #424242;
+    line-height: 1.8;
+  }
+
+  /* ---- LAYOUT CON IMAGEN FLOTANTE ---- */
+  .content-with-img {
+    display: flex;
+    gap: 16px;
+    margin: 14px 0;
+  }
+
+  .side-img {
+    width: 160px;
+    height: 140px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .side-text {
+    flex: 1;
+  }
+
+  /* ---- IMAGENES ---- */
+  .img-full {
+    width: 100%;
+    height: 240px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin: 14px 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  }
+
+  .img-caption {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: -10px;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  /* ---- GALERIA DOS COLUMNAS ---- */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  .grid-2 img {
+    width: 100%;
+    height: 140px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  /* ---- GALERIA TRES COLUMNAS ---- */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .grid-3 img {
+    width: 100%;
+    height: 110px;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  /* ---- CAJAS DESTACADAS ---- */
+  .highlight-box {
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .highlight-box strong {
+    color: #ff6f00;
+  }
+
+  .highlight-box.info {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-color: #1976d2;
+  }
+
+  .highlight-box.info strong {
+    color: #0d47a1;
+  }
+
+  .highlight-box.warning {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border-color: #d32f2f;
+  }
+
+  .highlight-box.warning strong {
+    color: #b71c1c;
+  }
+
+  /* ---- TABLAS ---- */
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 14px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+
+  th {
+    background: #455a64;
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  tr:nth-child(even) {
+    background: #f5f5f5;
+  }
+
+  tr:hover {
+    background: #eeeeee;
+  }
+
+  /* ---- BADGES / ETIQUETAS ---- */
+  .badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-weight: 600;
+    margin: 2px;
+    white-space: nowrap;
+  }
+
+  .badge.tipo-a {
+    background: #c8e6c9;
+    color: #1b5e20;
+  }
+
+  .badge.tipo-b {
+    background: #bbdefb;
+    color: #0d47a1;
+  }
+
+  .badge.tipo-c {
+    background: #ffe0b2;
+    color: #e65100;
+  }
+
+  /* ---- GRID DE CONCEPTOS ---- */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .concept-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border: 1px solid #81c784;
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .concept-box.alt {
+    background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+    border-color: #4fc3f7;
+  }
+
+  .concept-box strong {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    color: #1b5e20;
+  }
+
+  .concept-box.alt strong {
+    color: #01579b;
+  }
+
+  .concept-box ul {
+    list-style: none;
+    font-size: 0.7rem;
+  }
+
+  .concept-box li {
+    padding: 2px 0;
+    color: #2e7d32;
+  }
+
+  .concept-box.alt li {
+    color: #0277bd;
+  }
+
+  /* ---- COMPARATIVA ---- */
+  .comparison-section {
+    background: #fff;
+    border-radius: 10px;
+    margin: 24px 0;
+    padding: 24px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  }
+
+  .comparison-section h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #1a237e;
+    text-align: center;
+  }
+
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    margin: 14px 0;
+  }
+
+  .comp-table th {
+    background: #37474f;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    font-weight: 700;
+  }
+
+  .comp-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .comp-table .label-col {
+    background: #eceff1;
+    font-weight: 600;
+    color: #263238;
+    width: 25%;
+  }
+
+  .comp-table .col-ganaderia {
+    background: #e0f2f1;
+  }
+
+  .comp-table .col-pesca {
+    background: #e1f5fe;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: #263238;
+    color: #b0bec5;
+    text-align: center;
+    padding: 20px 16px;
+    font-size: 0.75rem;
+    margin-top: 30px;
+    line-height: 1.6;
+  }
+
+  footer strong {
+    color: #eceff1;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 1.6rem;
+    }
+
+    .grid-2,
+    .grid-3 {
+      grid-template-columns: 1fr;
+    }
+
+    .grid-3 img {
+      height: 140px;
+    }
+
+    .content-with-img {
+      flex-direction: column;
+    }
+
+    .side-img {
+      width: 100%;
+      height: 180px;
+    }
+
+    .nav-links {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .comp-table {
+      font-size: 0.7rem;
+    }
+
+    .comp-table td,
+    .comp-table th {
+      padding: 7px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-title">🌾 Recursos Primarios</div>
+  <ul class="nav-links">
+    <li><a href="#ganaderia">Ganadería</a></li>
+    <li><a href="#pesca">Pesca</a></li>
+    <li><a href="#comparativa">Comparación</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Actividades de Producción Primaria</h1>
+  <p>Ganadería y Pesca — La base de la alimentación mundial</p>
+  <img class="hero-image" src="https://images.unsplash.com/photo-1488459716781-6f3ee4042e6d?w=900&q=80" alt="Producción de alimentos">
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="main-content">
+
+  <!-- SECCION GANADERIA -->
+  <section id="ganaderia" class="section-card ganaderia">
+    <h2>🐄 Ganadería</h2>
+    
+    <div class="content-with-img">
+      <img class="side-img" src="https://images.unsplash.com/photo-1574282283474-e4e8e8b0c0c0?w=300&q=80" alt="Rebaño de ganado">
+      <div class="side-text">
+        <p>
+          La <strong>ganadería</strong> es la cría y reproducción de animales domesticos con fines economicos. 
+          Su proposito es obtener carne, leche, lana, cueros y otros productos de origen animal 
+          para el consumo humano y la industria.
+        </p>
+        <p>
+          Es una actividad ancestral que ha evolucionado desde sistemas tradicionales hasta operaciones 
+          modernas de gran escala. La ganaderia representa una fuente importante de empleo rural y 
+          contribuye significativamente al PIB agrícola de muchas naciones.
+        </p>
+      </div>
+    </div>
+
+    <h3>Tipos de Ganadería según el animal</h3>
+    
+    <div class="grid-2">
+      <img src="https://images.unsplash.com/photo-1500595046891-915e0e4a6810?w=500&q=80" alt="Ganadería bovina">
+      <img src="https://images.unsplash.com/photo-1494521369385-7d93c8e06f22?w=500&q=80" alt="Ganadería ovina">
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Animal</th>
+            <th>Productos principales</th>
+            <th>Ciclo productivo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge tipo-a">BOVINA</span></td>
+            <td>Vacas, toros</td>
+            <td>Carne, leche, cuero</td>
+            <td>3-5 años</td>
+          </tr>
+          <tr>
+            <td><span class="badge tipo-b">OVINA</span></td>
+            <td>Ovejas, carneros</td>
+            <td>Carne, lana, leche</td>
+            <td>1-2 años</td>
+          </tr>
+          <tr>
+            <td><span class="badge tipo-c">PORCINA</span></td>
+            <td>Cerdos, marranas</td>
+            <td>Carne (jamon, bacon)</td>
+            <td>6-8 meses</td>
+          </tr>
+          <tr>
+            <td><span class="badge tipo-a">AVICOLA</span></td>
+            <td>Gallinas, pavos</td>
+            <td>Carne, huevos, plumas</td>
+            <td>2-3 meses</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box">
+      <strong>⚠️ Desafío ambiental:</strong> La ganadería intensiva genera emisiones de metano 
+      que contribuyen al cambio climático. Se buscan practicas sostenibles como rotacion de pastos 
+      y alimentacion basada en forrajes.
+    </div>
+
+    <h3>Equipamiento e Instalaciones</h3>
+
+    <div class="concept-grid">
+      <div class="concept-box">
+        <strong>Establos</strong>
+        <ul>
+          <li>• Alojamiento</li>
+          <li>• Ventilacion</li>
+          <li>• Sanidad</li>
+        </ul>
+      </div>
+      <div class="concept-box alt">
+        <strong>Pastizales</strong>
+        <ul>
+          <li>• Rotacion</li>
+          <li>• Mejora genetica</li>
+          <li>• Riego</li>
+        </ul>
+      </div>
+      <div class="concept-box">
+        <strong>Maquinaria</strong>
+        <ul>
+          <li>• Ordeñadores</li>
+          <li>• Trituradores</li>
+          <li>• Tractores</li>
+        </ul>
+      </div>
+      <div class="concept-box alt">
+        <strong>Control sanitario</strong>
+        <ul>
+          <li>• Vacunacion</li>
+          <li>• Nutricion</li>
+          <li>• Monitoreo</li>
+        </ul>
+      </div>
+    </div>
+
+    <img class="img-full" src="https://images.unsplash.com/photo-1500626046891-915e0e4a6810?w=900&q=80" alt="Granja moderna">
+    <div class="img-caption">Operación ganadera moderna con sistemas de manejo automatizado.</div>
+
+  </section>
+
+  <!-- SECCION PESCA -->
+  <section id="pesca" class="section-card pesca">
+    <h2>🐟 Pesca y Acuicultura</h2>
+
+    <div class="content-with-img">
+      <img class="side-img" src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=300&q=80" alt="Bote pesquero">
+      <div class="side-text">
+        <p>
+          La <strong>pesca</strong> es la captura de organismos acuaticos en el mar, rios y lagos. 
+          Es una actividad primaria esencial que proporciona alimento a miles de millones de personas 
+          en el mundo y genera empleo para millones de pescadores.
+        </p>
+        <p>
+          La acuicultura, por otro lado, es la crianza controlada de peces y mariscos en 
+          ambientes artificiales. Ambas formas coexisten en la actualidad como complementos 
+          para satisfacer la demanda global de alimentos marinos.
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight-box info">
+      <strong>📊 Dato:</strong> Aproximadamente el 17% de las proteínas a nivel mundial proviene 
+      de productos del mar, siendo fundamental para la nutricion de poblaciones costeras.
+    </div>
+
+    <h3>Metodos de Pesca</h3>
+
+    <div class="grid-3">
+      <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" alt="Pesca artesanal">
+      <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&q=80" alt="Pesca industrial">
+      <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&q=80" alt="Acuicultura">
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Escala</th>
+            <th>Tecnología</th>
+            <th>Sostenibilidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge tipo-c">ARTESANAL</span></td>
+            <td>Pequeña</td>
+            <td>Linea, red manual, canoa</td>
+            <td>Alta</td>
+          </tr>
+          <tr>
+            <td><span class="badge tipo-b">INDUSTRIAL</span></td>
+            <td>Gran escala</td>
+            <td>Redes de arrastre, sonar, barcos factoria</td>
+            <td>Riesgo de sobrepesca</td>
+          </tr>
+          <tr>
+            <td><span class="badge tipo-a">ACUICULTURA</span></td>
+            <td>Controlada</td>
+            <td>Estanques, jaulas flotantes, sistemas RAS</td>
+            <td>Media-Alta</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Especies de interes comercial</h3>
+
+    <div class="concept-grid">
+      <div class="concept-box">
+        <strong>Peces</strong>
+        <ul>
+          <li>• Salmon</li>
+          <li>• Bacalao</li>
+          <li>• Caballa</li>
+        </ul>
+      </div>
+      <div class="concept-box alt">
+        <strong>Crustaceos</strong>
+        <ul>
+          <li>• Langosta</li>
+          <li>• Camaron</li>
+          <li>• Cangrejo</li>
+        </ul>
+      </div>
+      <div class="concept-box">
+        <strong>Moluscos</strong>
+        <ul>
+          <li>• Ostra</li>
+          <li>• Almeja</li>
+          <li>• Calamar</li>
+        </ul>
+      </div>
+      <div class="concept-box alt">
+        <strong>Otros</strong>
+        <ul>
+          <li>• Alga marina</li>
+          <li>• Esponjas</li>
+          <li>• Coral</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight-box warning">
+      <strong>🚨 Crisis ecologica:</strong> La sobrepesca ha diezmado poblaciones de especies como 
+      el bacalao y el atun. Se requieren regulaciones internacionales y vedas temporales para 
+      recuperar los ecosistemas marinos.
+    </div>
+
+    <img class="img-full" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=900&q=80" alt="Puerto pesquero">
+    <div class="img-caption">Puerto de descarga de pesca comercial con sistemas de procesamiento.</div>
+
+  </section>
+
+  <!-- SECCION COMPARATIVA -->
+  <section class="comparison-section" id="comparativa">
+    <h2>📋 Cuadro Comparativo</h2>
+    
+    <p style="text-align: center; color: #555; margin-bottom: 16px;">
+      Analisis de diferencias clave entre la ganaderia y la pesca como actividades primarias.
+    </p>
+
+    <div class="table-wrapper">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Aspecto</th>
+            <th style="width: 37.5%;" class="col-ganaderia">🐄 Ganadería</th>
+            <th style="width: 37.5%;" class="col-pesca">🐟 Pesca</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label-col"><strong>Ambiente</strong></td>
+            <td class="col-ganaderia">Terrestre (pastos, establos)</td>
+            <td class="col-pesca">Acuatico (mares, rios, lagos)</td>
+          </tr>
+          <tr>
+            <td class="label-col"><strong>Produccion</strong></td>
+            <td class="col-ganaderia">Carne, leche, lana, huevos</td>
+            <td class="col-pesca">Pescado, mariscos, algas</td>
+          </tr>
+          <tr>
+            <td class="label-col"><strong>Ciclo</strong></td>
+            <td class="col-ganaderia">Controlado (meses a años)</td>
+            <td class="col-pesca">Natural (variable, captura)</td>
+          </tr>
+          <tr>
+            <td class="label-col"><strong>Tecnologia</strong></td>
+            <td class="col-ganaderia">Mecanica, automatizacion</td>
+            <td class="col-pesca">Redes, sonar, sistemas refrigeracion</td>
+          </tr>
+          <tr>
+            <td class="label-col"><strong>Riesgo</strong></td>
+            <td class="col-ganaderia">Enfermedades, fluctuaciones de precios</td>
+            <td class="col-pesca">Sobrepesca, cambios climaticos</td>
+          </tr>
+          <tr>
+            <td class="label-col"><strong>Mano de obra</strong></td>
+            <td class="col-ganaderia">Media, requiere capacitacion</td>
+            <td class="col-pesca">Alta, condiciones duras</td>
+          </tr>
+          <tr>
+            <td class="label-col"><strong>Renovabilidad</strong></td>
+            <td class="col-ganaderia">Recurso renovable</td>
+            <td class="col-pesca">Renovable pero limitado</td>
+          </tr>
+          <tr>
+            <td class="label-col"><strong>Impacto ambiental</strong></td>
+            <td class="col-ganaderia">Emisiones de gases, uso de tierra</td>
+            <td class="col-pesca">Daño ecosistema marino, redes fantasma</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box">
+      <strong>💡 Conclusion:</strong> Ambas actividades son vitales para la alimentacion mundial, 
+      pero enfrentan desafios de sostenibilidad. El futuro depende de regulacion responsable, 
+      innovacion tecnologica y conciencia ambiental para garantizar recursos para generaciones futuras.
+    </div>
+
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Actividades Primarias: Ganadería y Pesca</strong><br>
+  Educación Secundaria Superior | Recursos Naturales<br>
+  © 2026 — Bachillerato General
+</footer>
+
+</body>
+</html>
